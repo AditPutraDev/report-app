@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         theme:
             ThemeData(primaryColor: Color(0xFFB71C1C), fontFamily: "Quicksand"),
         title: 'Keluarga Bintoro',
-        home: LandingPage());
+        home: SplashPage());
   }
 }
 
@@ -38,9 +38,10 @@ class _SplashPageState extends State<SplashPage> {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     final String token =
-        sharedPreferences.getString("token"); //change with access_token
-    print(token);
-    if (token == null || token.isEmpty) {
+        sharedPreferences.getString("access_token"); //change with access_token
+    final String link = sharedPreferences.getString("link");
+    print("read token $token || read link : $link");
+    if (token == null || token.isEmpty || link == null || link.isEmpty) {
       Navigator.push(context, MaterialPageRoute(builder: (_) => LandingPage()));
     } else {
       Navigator.of(context).pushAndRemoveUntil(

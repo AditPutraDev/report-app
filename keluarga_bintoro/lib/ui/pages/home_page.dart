@@ -10,10 +10,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final title = ["Daily Report", "Quality Control"];
   SharedPreferences sharedPreferences;
+  String link = "";
   @override
   void initState() {
     super.initState();
     checkLoginStatus();
+    getPref();
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      link = preferences.getString("link");
+    });
   }
 
   checkLoginStatus() async {
@@ -60,22 +69,23 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 10, left: 28),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                            backgroundColor: Colors.white,
-                            backgroundImage: NetworkImage(widget.imageUrl)),
-                        SizedBox(width: 8),
-                        Text(
-                          "Selamat Datang,\nKeluarga Bintoro",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    )),
+                  padding: const EdgeInsets.only(top: 10, left: 28),
+                  child: Row(
+                    children: [
+                      // CircleAvatar(
+                      //     backgroundColor: Colors.white,
+                      //     backgroundImage: NetworkImage(widget.imageUrl)),
+                      SizedBox(width: 8),
+                      Text(
+                        "Selamat Datang,\nKeluarga Bintoro",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8, 90, 8, 0),
                   child: Row(
@@ -113,7 +123,9 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ListProjectPage(
-                                      title: title[1], role: widget.role)));
+                                      link: link,
+                                      title: title[1],
+                                      role: widget.role)));
                         },
                       ),
                     ],

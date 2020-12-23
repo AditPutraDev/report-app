@@ -1,8 +1,8 @@
 part of 'pages.dart';
 
 class QualityControlPage extends StatefulWidget {
-  final String title, role;
-  QualityControlPage({this.title, this.role});
+  final String link, title, role;
+  QualityControlPage({this.link, this.title, this.role});
 
   @override
   _QualityControlPageState createState() => _QualityControlPageState();
@@ -27,7 +27,8 @@ class _QualityControlPageState extends State<QualityControlPage> {
       isLoading = true;
     });
 
-    final data = await ProjectService.getProjectsData(role: widget.role);
+    final data = await ProjectService.getProjectsData(
+        role: (widget.role == null) ? widget.link : widget.role);
 
     if (data.projects != null && data.projects.isNotEmpty) {
       setState(() {
@@ -46,7 +47,8 @@ class _QualityControlPageState extends State<QualityControlPage> {
     setState(() {
       isLoading = true;
     });
-    final data = await ProjectService.getProjectsData(role: widget.role);
+    final data = await ProjectService.getProjectsData(
+        role: (widget.role == null) ? widget.link : widget.role);
 
     if (data.projects != null && data.projects.isNotEmpty) {
       setState(() {
@@ -175,7 +177,9 @@ class _QualityControlPageState extends State<QualityControlPage> {
     setState(() {
       isLoading = true;
     });
-    await ProjectService.postReport(role: widget.role, data: data).then((res) {
+    await ProjectService.postReport(
+            role: (widget.role == null) ? widget.link : widget.role, data: data)
+        .then((res) {
       if (res == true) {
         Navigator.of(context).pop();
       }
@@ -229,7 +233,10 @@ class _QualityControlPageState extends State<QualityControlPage> {
                               isLoading = true;
                             });
                             await ProjectService.getProjectsById(
-                                    id: value.id.toString(), role: widget.role)
+                                    id: value.id.toString(),
+                                    role: (widget.role == null)
+                                        ? widget.link
+                                        : widget.role)
                                 .then((value) {
                               schedules = value;
                               setState(() {});
@@ -345,6 +352,7 @@ class _QualityControlPageState extends State<QualityControlPage> {
                                 fontWeight: FontWeight.bold),
                           ),
                           controller: TextEditingController(text: e.name),
+                          enabled: false,
                           onChanged: (val) {
                             e.name = val;
                           },
@@ -635,5 +643,3 @@ class _QualityControlPageState extends State<QualityControlPage> {
     );
   }
 }
-
-

@@ -6,7 +6,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  final auth = [cleanAuthUrl + "login", pestAuthUrl + "login"];
+  final auth = [cleanAuthUrl + "/login", pestAuthUrl + "/login"];
   final role = [cleanAuthUrl, pestAuthUrl];
   final image = [
     "https://crm.bintorocorp.co.id/assets/web/img/order-services/1592749458.png",
@@ -34,11 +34,13 @@ class _LandingPageState extends State<LandingPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 28),
-                child: Text("Pilih Jenis Jasa",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold)),
+                child: SafeArea(
+                  child: Text("Pilih Jenis Jasa",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold)),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 90, 8, 0),

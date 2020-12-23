@@ -10,7 +10,7 @@ class ProjectService {
     final pref = await SharedPreferences.getInstance();
     final key = 'access_token';
     final value = pref.get(key) ?? 0;
-    String url = role + "select_schedule";
+    String url = role + "/select_schedule";
     var client = http.Client();
     var response = await client.get(url, headers: {
       'Accept': 'application/json',
@@ -27,7 +27,7 @@ class ProjectService {
      final pref = await SharedPreferences.getInstance();
     final key = 'access_token';
     final value = pref.get(key) ?? 0;
-    String url = role + "report";
+    String url = role + "/report";
     var client = http.Client();
     var response = await client.get(url, headers: {
       'Accept': 'application/json',
@@ -45,7 +45,7 @@ class ProjectService {
     final pref = await SharedPreferences.getInstance();
     final key = 'access_token';
     final value = pref.get(key) ?? 0;
-    String url = role + "select_schedule/" + id;
+    String url = role + "/select_schedule/" + id;
     var client = http.Client();
     var response = await client.get(url, headers: {
       'Accept': 'application/json',
@@ -61,7 +61,7 @@ class ProjectService {
     final pref = await SharedPreferences.getInstance();
     final key = 'access_token';
     final value = pref.get(key) ?? 0;
-    String url = role + "report";
+    String url = role + "/report";
     var client = http.Client();
     var response = await client.post(url, body: data, encoding: utf8, headers: {
       'content-type': 'application/json',

@@ -1,8 +1,8 @@
 part of 'pages.dart';
 
 class ListProjectPage extends StatefulWidget {
-  final String role, title;
-  ListProjectPage({this.role, this.title});
+  final String link, role, title;
+  ListProjectPage({this.link, this.role, this.title});
   @override
   _ListProjectPageState createState() => _ListProjectPageState();
 }
@@ -19,7 +19,8 @@ class _ListProjectPageState extends State<ListProjectPage> {
       isLoading = true;
     });
 
-    final data = await ProjectService.getListProject(role: widget.role);
+    final data = await ProjectService.getListProject(
+        role: (widget.role == null) ? widget.link : widget.role);
 
     if (data.reports != null && data.reports.isNotEmpty) {
       setState(() {
@@ -38,7 +39,7 @@ class _ListProjectPageState extends State<ListProjectPage> {
     setState(() {
       isLoading = true;
     });
-    final data = await ProjectService.getListProject(role: widget.role);
+    final data = await ProjectService.getListProject(role: (widget.role == null) ? widget.link : widget.role);
 
     if (data.reports != null && data.reports.isNotEmpty) {
       setState(() {
@@ -141,6 +142,7 @@ class _ListProjectPageState extends State<ListProjectPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => QualityControlPage(
+                      link: widget.link,
                         title: widget.title, role: widget.role))),
           ),
         ),

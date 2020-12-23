@@ -18,21 +18,26 @@ class DetailPage extends StatelessWidget {
               child: Container(
             color: Colors.white,
           )),
-          ListView(
-            children: [
-              Hero(
-                tag: image,
-                child: Material(
-                  child: InkWell(
-                    child: Container(
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height,
-                      child: Image.network(image, fit: BoxFit.cover),
-                    ),
+          Hero(
+            tag: image,
+            child: Material(
+              child: InkWell(
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: image,
+                    placeholder: (context, url) => Center(
+                        child: SpinKitCircle(
+                      color: Colors.red[900],
+                    )),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
+                  //Image.network(image, fit: BoxFit.cover),
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
