@@ -223,10 +223,12 @@ class _QualityControlPageState extends State<QualityControlPage> {
                       value: _project != "" ? dataProject[projectIndex] : null,
                       items: dataProject.map((value) {
                         return DropdownMenuItem(
-                          child: Container(
-                              child: SingleChildScrollView(
-                                  controller: _scrollController,
-                                  child: Text(value.text.toString()))),
+                          child: SingleChildScrollView(
+                            reverse: true,
+                            physics: BouncingScrollPhysics(),
+                            controller: _scrollController,
+                            child: Text(value.text),
+                          ),
                           value: value,
                           onTap: () async {
                             setState(() {
@@ -269,55 +271,12 @@ class _QualityControlPageState extends State<QualityControlPage> {
                         setState(() {
                           _project = value.text;
                           _idSchedule = value.id.toString();
-                          //_getProjectListById(id: value.id.toString());
                           projectIndex = dataProject
                               .indexWhere((e) => e.text == value.text);
                         });
                       },
                     ),
-              // (projectList.isEmpty && isLoading && projectIndex == null)
-              //     ? Center(
-              //         child: SpinKitThreeBounce(
-              //           size: 24,
-              //           color: Colors.red[900],
-              //         ),
-              //       )
-              //     : DropdownButton(
-              //         isExpanded: true,
-              //         hint: Text("Select Your Project"),
-              //         value: _project != "" ? projectList[projectIndex] : null,
-              //         items: projectList.map((value) {
-              //           return DropdownMenuItem(
-              //             child: Text(value['text']),
-              //             value: value,
-              //           );
-              //         }).toList(),
-              //         onChanged: (value) {
-              //           setState(() {
-              //             _getProjectListById(id: value['id'].toString());
-              //             _project = value['text'];
-              //             projectIndex = projectList
-              //                 .indexWhere((e) => e['text'] == value['text']);
-              //           });
-              //         },
-              //       ),
               SizedBox(height: 24),
-              // DropdownButton(
-              //   isExpanded: true,
-              //   hint: Text("Select Your Pekerjaan"),
-              //   value: _valFriends,
-              //   items: _myFriends.map((value) {
-              //     return DropdownMenuItem(
-              //       child: Text(value),
-              //       value: value,
-              //     );
-              //   }).toList(),
-              //   onChanged: (value) {
-              //     setState(() {
-              //       _valFriends = value;
-              //     });
-              //   },
-              // ),
               if (schedules != null && isLoading)
                 Center(
                   child: SpinKitThreeBounce(
@@ -636,7 +595,8 @@ class _QualityControlPageState extends State<QualityControlPage> {
               "Submit",
               style: TextStyle(color: Colors.white),
             ),
-            onPressed: () => submitHandler(),
+            onPressed: () {},
+            //() => submitHandler(),
           ),
         ),
       ),

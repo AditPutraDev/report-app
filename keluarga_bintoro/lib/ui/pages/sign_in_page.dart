@@ -9,9 +9,9 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   TextEditingController usernameController =
-      TextEditingController(text: "user");
+      TextEditingController(text: "fairuz");
   TextEditingController passwordController =
-      TextEditingController(text: "123456");
+      TextEditingController(text: "fairuz");
 
   bool isPasswordValid = false;
   bool isSigningIn = false;
@@ -162,8 +162,8 @@ class _SignInPageState extends State<SignInPage> {
         sharedPreferences.setString("link", jsonResponse['link']);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (BuildContext context) => HomePage(
-                  role: widget.role, imageUrl: widget.imageUrl),
+              builder: (BuildContext context) =>
+                  HomePage(role: widget.role, imageUrl: widget.imageUrl),
             ),
             (Route<dynamic> route) => false);
       }

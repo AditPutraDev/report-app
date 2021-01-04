@@ -6,13 +6,10 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red[900],
-      ),
       body: Stack(
         children: [
           Container(
-            color: Colors.white,
+            color: Colors.red[900],
           ),
           SafeArea(
               child: Container(
@@ -36,6 +33,20 @@ class DetailPage extends StatelessWidget {
                   ),
                   //Image.network(image, fit: BoxFit.cover),
                 ),
+              ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 55,
+            color: Colors.red[900],
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                    onPressed: () => Navigator.pop(context)),
               ),
             ),
           ),
